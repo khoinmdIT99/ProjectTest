@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CategoryPost>
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+
+        @foreach (var item in Model)
+        {
+            var url = "/loai-baiviet/" + item.MetaTitle.Trim() + "-" + item.Id;
+            <li class="active"><a href="@url" target="_self">@item.CategoryName</a></li>
+        }
+
+    </ul>
+    <div class="clearfix"></div>
+</div>

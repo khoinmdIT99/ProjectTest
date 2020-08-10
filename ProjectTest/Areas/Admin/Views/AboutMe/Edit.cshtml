@@ -1,0 +1,82 @@
+﻿@model ProjectTest.Models.AboutMe
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtEditContentPost', {
+                customConfig: '/ckeditor/config.js',
+            });
+            $('.custom-file-input').on('change', function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                console.log(fileName)
+            });
+        });
+    </script>
+}
+<hr />
+<h2 style="color:white">Thông tin</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger" style="color:white"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mdl-textfield mdl-js-textfield full-size">
+                <label asp-for="FirstName" class="mdl-textfield__label"></label>
+                <input asp-for="FirstName" class="mdl-textfield__input" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield full-size">
+                <label asp-for="LastName" class="mdl-textfield__label"></label>
+                <input asp-for="LastName" class="mdl-textfield__input" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield full-size">
+                <label asp-for="Title" class="mdl-textfield__label"></label>
+                <input asp-for="Title" class="mdl-textfield__input" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                Nội dung bài viết:
+                <textarea class="txtAreaIntro" asp-for="Introduce" id="txtEditContentPost"></textarea>
+
+                <span asp-validation-for="Introduce" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Status" /> Hiển thị
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label" style="color:white"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger" style="color:white"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue" />
+            </div>
+        </form>
+        <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">Back to List</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,149 @@
+﻿@model ProjectTest.Models.Post
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+    <div class="">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2>Thông tin chi tiết</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <form class="form form--basic">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
+                            <div class="col-md-6">
+                                <img src="@Html.DisplayFor(model=>model.HinhAnh)" width="180" height="200" />
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <input class="mdl-textfield__input" value="@Html.DisplayFor(model => model.Title)" />
+                                <label class="mdl-textfield__label" for="profile-floating-first-name">Tiêu đề</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <textarea class="mdl-textfield__input" rows="5" cols="50" id="txtResult">@Html.DisplayFor(model=>model.ContentPost)</textarea>
+                                <label class="mdl-textfield__label" for="profile-floating-first-name">Nội dung</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <input class="mdl-textfield__input" type="text" value="@Html.DisplayFor(model=>model.CreatedBy)" />
+                                <label class="mdl-textfield__label" for="profile-floating-first-name">Người viết</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <input class="mdl-textfield__input" type="text" value="@Html.DisplayFor(model=>model.CreatedDate)" />
+                                <label class="mdl-textfield__label" for="profile-floating-first-name">Ngày viết</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                @Html.DisplayNameFor(model => model.ViewCount): <p class="mdl-textfield__input">@Html.DisplayFor(model => model.ViewCount)</p>
+
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                Loại menu:  @Html.DisplayFor(model => model.CategoryPost.CategoryName)
+
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <label class="mdl-checkbox__label">Hiển thị</label>
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"><i class="fas fa-edit"></i> Edit</a> &nbsp; &nbsp;
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<div>
+        <h4>Post</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContentPost)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContentPost)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MetaTitle)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MetaTitle)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MetaKeyword)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MetaKeyword)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MetaDescription)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MetaDescription)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ViewCount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ViewCount)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryPost)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryPost.CategoryName)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@

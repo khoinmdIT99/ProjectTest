@@ -1,0 +1,67 @@
+﻿@model ProjectTest.Areas.Admin.Models.SlideEditViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on('change', function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                console.log(fileName)
+            });
+        });
+    </script>
+}
+<hr />
+
+
+<div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+    <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__title">
+            <h5 class="mdl-card__title-text text-color--white">Chỉnh sửa Slide</h5>
+            <img src="@Model.ExistImagePath" alt="Hello" />
+        </div>
+        <div class="mdl-card__supporting-text">
+            <form class="form form--basic" asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ExistImagePath" />
+                <div class="form-group">
+                    <label class="custom-file-label" style="color:white">Choose File...</label>
+                    <input asp-for="Image" type="file" class="form-control custom-file-input" />
+                    <span asp-validation-for="Image" class="text-danger" style="color:white"></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield full-size">
+                    <label asp-for="Description" class="mdl-textfield__label"></label>
+                    <textarea asp-for="Description" class="mdl-textfield__input" style="color:white"></textarea>
+                    <span asp-validation-for="Description" class="text-danger" style="color:white"></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield full-size">
+                    <label asp-for="DisplayOrder" class="mdl-textfield__label"></label>
+                    <input asp-for="DisplayOrder" class="mdl-textfield__input" style="color:white" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger" style="color:white"></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield full-size">
+                    <label asp-for="Link" class="mdl-textfield__label"></label>
+                    <input asp-for="Link" class="mdl-textfield__input" style="color:white" />
+                    <span asp-validation-for="Link" class="text-danger" style="color:white"></span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield full-size">
+                    <label asp-for="Status" class="control-label" style="color:white"></label>&nbsp;
+                    <input asp-for="Status" class="mdl-checkbox__input" style="color:white" />
+                    <span asp-validation-for="Status" class="text-danger" style="color:white"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue" />
+                </div>
+            </form>
+            <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">Back to List</a>
+        </div>
+    </div>
+</div>
